@@ -1,5 +1,4 @@
 <ul>
-  <p>{{ userId() }}</p>
   @for (task of userTasks(); track task.id) {
     <li>
       <app-task [task]="task" />
