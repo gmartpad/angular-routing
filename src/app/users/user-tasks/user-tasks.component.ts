@@ -12,6 +12,15 @@ import { ActivatedRouteSnapshot, ResolveFn, RouterLink, RouterOutlet, RouterStat
 export class UserTasksComponent {
   userName = input.required<string>()
   message = input.required<string>()
+  // private activatedRoute = inject(ActivatedRoute)
+
+  // ngOnInit() {
+  //   const subscription = this.activatedRoute.data.subscribe({
+  //     next: (data) => {
+  //       console.log(data)
+  //     }
+  //   })
+  // }
 }
 
 export const resolveUserName: ResolveFn<string> = (
