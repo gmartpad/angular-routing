@@ -10,7 +10,8 @@ import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './user-tasks.component.css',
 })
 export class UserTasksComponent implements OnInit {
-  userId = input.required<string>()
+  // userId = input.required<string>()
+  message = input.required<string>()
   private usersService = inject(UsersService)
   private activatedRoute = inject(ActivatedRoute)
   private destroyRef = inject(DestroyRef)
@@ -22,6 +23,7 @@ export class UserTasksComponent implements OnInit {
   // )
 
   ngOnInit(): void {
+    console.log(this.message())
     // console.log(this.activatedRoute)
     const subscription = this.activatedRoute.paramMap.subscribe({
       next: (paramMap) => {
