@@ -1,31 +1,24 @@
-import { Routes } from "@angular/router";
-import { NoTaskComponent } from "./tasks/no-task/no-task.component";
-import { resolveUserName, UserTasksComponent } from "./users/user-tasks/user-tasks.component";
-import { NotFoundComponent } from "./not-found/not-found.component";
-import { routes as usersRoutes } from "./users/users.routes";
+import { Routes } from '@angular/router';
 
-const routes: Routes = [
+import { NewTaskComponent } from './tasks/new-task/new-task.component';
+import { resolveUserTasks, TasksComponent } from './tasks/tasks.component';
+
+export const routes: Routes = [
   {
     path: '',
-    component: NoTaskComponent
+    redirectTo: 'tasks',
+    pathMatch: 'full',
   },
   {
-    path: 'users/:userId',
-    component: UserTasksComponent,
-    children: usersRoutes,
-    data: {
-      message: 'Hello, World!'
-    },
+    path: 'tasks', // <your-domain>/users/<uid>/tasks
+    component: TasksComponent,
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
     resolve: {
-      userName: resolveUserName
-    }
-  }, 
+      userTasks: resolveUserTasks,
+    },
+  },
   {
-    path: '**',
-    component: NotFoundComponent
-  }
-]
-
-export {
-  routes
-}
+    path: 'tasks/new',
+    component: NewTaskComponent,
+  },
+];
